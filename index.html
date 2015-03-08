@@ -15,7 +15,13 @@
 
 		<ul>
 			<li ng-repeat="cosa in listaDeCosas">
-				{{cosa}}
+				<!-- Usamos la directiva de Angular ng-model para representar el estado de cada tarea, por eso la almacenamos como valor booleano (true o false). Así la caja se mostrará "activada" cuando el estado en el objeto de ListaDeCosas sea igual a true -->
+	
+				<input type="checkbox" ng-model="cosa.completada">
+
+				<!-- Ahora debemos apuntar a la propiedad "tarea" de cada objeto cosa para obtener el valor de texto que la representa -->
+				<label>{{cosa.tarea}}</label>
+				
 			</li>
 		</ul>
 	</div>
