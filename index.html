@@ -15,42 +15,78 @@
 			font-weight: bold;
 		}
 	</style>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>
 	
-	<h1>{{"Las Cosas Que Tengo Que Hacer" | uppercase}}</h1>
-
-	<div ng-controller="Controlador_Principal">
-		<form ng-submit="agregarCosa()">
-			<input type="text" ng-model="cosaNueva">
-			<input type="submit" value="¡Agregar!">
-		</form>
-
-		<!-- Aplicamos el filtro personalizado "sinCompletar" -->
-		<p>¡Me quedan {{listaDeCosas | sinCompletar }} cosas por hacer!</p>
-		
-
-		<!-- Filtro de búsqueda -->
-		<label for="filtroParaBuscar">Filtrar</label>
-		<input type="text" id="filtroParaBuscar" ng-model="buscarCosa" placeholder="Buscar Cosa...">
-		<button ng-click="buscarCosa = ''">Borrar Filtro</button>
-
-
-
-		<ul>
-			<!-- Le indicamos a la directiva ng-repeat que queremos que filtre los elementos con base en el valor de "buscarCosa" -->
-			<li ng-repeat="cosa in listaDeCosas| filter:buscarCosa">
-				<!-- Usamos la directiva de Angular ng-model para representar el estado de cada tarea, por eso la almacenamos como valor booleano (true o false). Así la caja se mostrará "activada" cuando el estado en el objeto de ListaDeCosas sea igual a true -->
-	
-				<input type="checkbox" ng-model="cosa.completada">
-
-				<!-- Ahora debemos apuntar a la propiedad "tarea" de cada objeto cosa para obtener el valor de texto que la representa -->
-				<label ng-class="{'tachado gris': cosa.completada, 'bold': !cosa.completada}">{{cosa.tarea}}</label>
+	<div class="container-fluid">
+		<div class="row">
+			<h1 class="text-center">{{"Las Cosas Que Tengo Que Hacer" | uppercase}}</h1>
+			<div class="col-xs-offset-4 col-xs-4">
 				
-			</li>
-		</ul>
+				<div ng-controller="Controlador_Principal">
+					<form ng-submit="agregarCosa()">
+					    <div class="input-group">
+					      <input type="text" class="form-control" ng-model="cosaNueva" placeholder="¿Qué tienes que hacer?">
+					      <span class="input-group-btn">
+					        <input type="submit" class="btn btn-default" value="¡Agregar!">
+					      </span>
+					    </div><!-- /input-group -->
+
+					</form>
+
+					<hr>
+
+					
+					<div class="panel panel-default">
+					    <div class="panel-heading" role="tab" id="headingOne">
+						    <h4 class="panel-title">
+						        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFiltrar" aria-expanded="false" aria-controls="collapseFiltrar">
+						          Filtrar lista
+						        </a>
+						    </h4>
+					    </div>
+					    <div id="collapseFiltrar" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+							<div class="panel-body">
+								<div class="input-group">
+							      <input type="text" id="filtroParaBuscar" class="form-control" ng-model="buscarCosa" placeholder="Buscar Cosa...">
+							      <span class="input-group-btn">
+							        <button class="btn btn-default" ng-click="buscarCosa = ''">Borrar Filtro</button>
+							      </span>
+							    </div><!-- /input-group -->
+						    </div>
+					    </div>
+					</div>
+
+
+
+					<!-- Aplicamos el filtro personalizado "sinCompletar" -->
+					<p class="text-muted">¡Me quedan {{listaDeCosas | sinCompletar }} cosas por hacer!</p>
+
+
+
+					<ul>
+						<!-- Le indicamos a la directiva ng-repeat que queremos que filtre los elementos con base en el valor de "buscarCosa" -->
+						<li ng-repeat="cosa in listaDeCosas| filter:buscarCosa">
+							<!-- Usamos la directiva de Angular ng-model para representar el estado de cada tarea, por eso la almacenamos como valor booleano (true o false). Así la caja se mostrará "activada" cuando el estado en el objeto de ListaDeCosas sea igual a true -->
+				
+							<input type="checkbox" ng-model="cosa.completada">
+
+							<!-- Ahora debemos apuntar a la propiedad "tarea" de cada objeto cosa para obtener el valor de texto que la representa -->
+							<label ng-class="{'tachado gris': cosa.completada, 'bold': !cosa.completada}">{{cosa.tarea}}</label>
+							
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 	</div>
 	
+	<!-- jQuery -->
+	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.js"></script>
 
 	<!-- Agregamos la referencia a la libería de AngularJS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
