@@ -4,6 +4,17 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Lista De Cosas Por Hacer</title>
+	<style>
+		.tachado{
+			text-decoration: line-through;
+		}
+		.gris{
+			color: gray;
+		}
+		.bold{
+			font-weight: bold;
+		}
+	</style>
 </head>
 <body>
 
@@ -20,7 +31,7 @@
 				<input type="checkbox" ng-model="cosa.completada">
 
 				<!-- Ahora debemos apuntar a la propiedad "tarea" de cada objeto cosa para obtener el valor de texto que la representa -->
-				<label>{{cosa.tarea}}</label>
+				<label ng-class="{'tachado gris': cosa.completada, 'bold': !cosa.completada}">{{cosa.tarea}}</label>
 				
 			</li>
 		</ul>
