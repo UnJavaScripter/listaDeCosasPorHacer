@@ -8,7 +8,11 @@
 <body>
 
 	<div ng-controller="Controlador_Principal">
-		{{listaDeCosas}}
+		<ul>
+			<li ng-repeat="cosa in listaDeCosas">
+				{{cosa}}
+			</li>
+		</ul>
 	</div>
 
 	<!-- Agregamos la referencia a la libería de AngularJS -->
