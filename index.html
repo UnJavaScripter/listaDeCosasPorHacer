@@ -8,6 +8,11 @@
 <body>
 
 	<div ng-controller="Controlador_Principal">
+		<form ng-submit="agregarCosa()">
+			<input type="text" ng-model="cosaNueva">
+			<input type="submit" value="¡Agregar!">
+		</form>
+
 		<ul>
 			<li ng-repeat="cosa in listaDeCosas">
 				{{cosa}}
